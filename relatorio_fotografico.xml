@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Modelo de página: REGISTRO FOTOGRÁFICO DOS SERVIÇOS EXECUTADOS (DNIT - SR/AM)
+  Unidade: pontos (pt). Origem: canto superior esquerdo da página (x para a direita, y para baixo).
+  Marcadores {campo} vêm de <dados>; {foto.campo} vêm da <foto> ligada à <instancia>.
+-->
+<relatorio nome="registro_fotografico" versao="1.0">
+
+  <pagina formato="A4" largura="595.2" altura="841.8" unidade="pt"/>
+
+  <estilos>
+    <estilo id="titulo"  fonte="Arial-Bold" tamanho="6.7"/>
+    <estilo id="rotulo"  fonte="Arial-Bold" tamanho="5.5"/>
+    <estilo id="valor"   fonte="Arial"      tamanho="6.1"/>
+    <estilo id="legenda" fonte="Arial"      tamanho="6.1"/>
+    <estilo id="assina"  fonte="Arial"      tamanho="6.7" entrelinha="8.5"/>
+    <estilo id="moldura" espessura="1.2"/>
+    <estilo id="fina"    espessura="0.6"/>
+  </estilos>
+
+  <!-- Dados do relatório (substituir pelos valores da medição) -->
+  <dados>
+    <campo id="orgao">DEPARTAMENTO NACIONAL DE INFRAESTRUTURA DE TRANSPORTES</campo>
+    <campo id="regional">SUPERINTENDÊNCIA REGIONAL NO ESTADO DO AMAZONAS - SR/AM</campo>
+    <campo id="titulo">REGISTRO FOTOGRÁFICO DOS SERVIÇOS EXECUTADOS</campo>
+    <campo id="empresa">LCM CONSTRUÇÃO E COMERCIO S/A</campo>
+    <campo id="contrato">SR-00 00563/2024</campo>
+    <campo id="medicao">24ª</campo>
+    <campo id="servicos_ate">31/08/2026</campo>
+    <campo id="periodo_inicio">01/08/2026</campo>
+    <campo id="periodo_fim">31/08/2026</campo>
+    <campo id="rodovia">BR-319/AM</campo>
+    <campo id="supervisora">PROSUL - Projetos, Supervisão e Planejamento Ltda</campo>
+    <campo id="fiscal">Engº Isaias Reis Pinheiro</campo>
+
+    <!-- km = estaca * 20 / 1000 + 198,8 (mesma fórmula da planilha) -->
+    <calculo id="km" expressao="estaca * 20 / 1000 + 198.8" casas="2" separador_decimal=","/>
+
+    <fotos>
+      <foto id="1" arquivo="assets/foto_1.jpg" estaca="780" situacao="ANTES"   servico="REGULARIZAÇÃO DE SUBLEITO"/>
+      <foto id="2" arquivo="assets/foto_2.jpg" estaca="780" situacao="DURANTE" servico="REGULARIZAÇÃO DE SUBLEITO"/>
+      <foto id="3" arquivo="assets/foto_3.jpg" estaca="780" situacao="DURANTE" servico="REGULARIZAÇÃO DE SUBLEITO"/>
+      <foto id="4" arquivo="assets/foto_4.jpg" estaca="780" situacao="DURANTE" servico="REGULARIZAÇÃO DE SUBLEITO"/>
+      <foto id="5" arquivo="assets/foto_5.jpg" estaca="780" situacao="DURANTE" servico="REGULARIZAÇÃO DE SUBLEITO"/>
+      <foto id="6" arquivo="assets/foto_6.jpg" estaca="780" situacao="DEPOIS"  servico="REGULARIZAÇÃO DE SUBLEITO"/>
+    </fotos>
+  </dados>
+
+  <!-- Bloco reutilizável: foto + tabela de legenda. Coordenadas relativas à instância. -->
+  <modelo id="bloco_foto">
+    <imagem x="0.1" y="0" largura="214.0" altura="158.6" arquivo="{foto.arquivo}"/>
+    <!-- contorno e divisões -->
+    <retangulo x="0" y="0" largura="215.4" altura="194.3" estilo="fina"/>
+    <linha x1="0"     y1="159.8" x2="215.4" y2="159.8" estilo="fina"/>
+    <linha x1="0"     y1="168.2" x2="215.4" y2="168.2" estilo="fina"/>
+    <linha x1="0"     y1="177.5" x2="107.7" y2="177.5" estilo="fina"/>
+    <linha x1="0"     y1="185.9" x2="107.7" y2="185.9" estilo="fina"/>
+    <linha x1="107.7" y1="159.8" x2="107.7" y2="194.3" estilo="fina"/>
+    <linha x1="35.9"  y1="177.5" x2="35.9"  y2="194.3" estilo="fina"/>
+    <linha x1="71.8"  y1="177.5" x2="71.8"  y2="194.3" estilo="fina"/>
+    <!-- textos (célula = texto centralizado em x,y,largura,altura) -->
+    <celula x="0"     y="159.8" largura="107.7" altura="8.4" estilo="legenda">LOCALIZAÇÃO</celula>
+    <celula x="107.7" y="159.8" largura="107.7" altura="8.4" estilo="legenda">SERVIÇOS</celula>
+    <celula x="0"     y="168.2" largura="107.7" altura="9.3" estilo="legenda">{rodovia}</celula>
+    <celula x="107.7" y="168.2" largura="107.7" altura="26.1" estilo="legenda">{foto.servico}</celula>
+    <celula x="0"     y="177.5" largura="35.9"  altura="8.4" estilo="legenda">ESTACA</celula>
+    <celula x="35.9"  y="177.5" largura="35.9"  altura="8.4" estilo="legenda">KM</celula>
+    <celula x="71.8"  y="177.5" largura="35.9"  altura="8.4" estilo="legenda">SITUAÇÃO</celula>
+    <celula x="0"     y="185.9" largura="35.9"  altura="8.4" estilo="legenda">{foto.estaca}</celula>
+    <celula x="35.9"  y="185.9" largura="35.9"  altura="8.4" estilo="legenda">{foto.km}</celula>
+    <celula x="71.8"  y="185.9" largura="35.9"  altura="8.4" estilo="legenda">{foto.situacao}</celula>
+  </modelo>
+
+  <layout>
+    <!-- Cabeçalho -->
+    <imagem x="272.4" y="22.6" largura="109.1" altura="21.7" arquivo="assets/logo_dnit.png"/>
+    <retangulo x="71.3" y="51.5" largura="479.4" altura="689.6" estilo="moldura"/>
+    <linha x1="71.3" y1="112.7" x2="550.7" y2="112.7" estilo="moldura"/>
+    <texto x="311.0" y="53.3" alinhamento="centro" estilo="titulo" ancora="topo">{orgao}</texto>
+    <texto x="311.0" y="63.5" alinhamento="centro" estilo="titulo" ancora="topo">{regional}</texto>
+    <texto x="311.0" y="73.7" alinhamento="centro" estilo="titulo" ancora="topo">{titulo}</texto>
+
+    <!-- Campos do cabeçalho -->
+    <texto x="132.5" y="95.0"  estilo="rotulo" ancora="topo">EMPRESA:</texto>
+    <texto x="164.1" y="94.8"  estilo="valor"  ancora="topo">{empresa}</texto>
+    <texto x="353.1" y="95.0"  estilo="rotulo" ancora="topo">CONTRATO:</texto>
+    <texto x="388.8" y="94.8"  estilo="valor"  ancora="topo">{contrato}</texto>
+    <texto x="502.2" y="95.0"  estilo="rotulo" ancora="topo">MEDIÇÃO:</texto>
+    <texto x="532.3" y="94.8"  estilo="valor"  ancora="topo">{medicao}</texto>
+    <texto x="114.6" y="105.2" estilo="rotulo" ancora="topo">SERVIÇOS EXECUTADOS ATÉ:</texto>
+    <texto x="199.9" y="105.0" estilo="valor"  ancora="topo">{servicos_ate}</texto>
+    <texto x="358.8" y="105.2" estilo="rotulo" ancora="topo">PERÍODO:</texto>
+    <texto x="390.7" y="105.0" estilo="valor"  ancora="topo">{periodo_inicio}</texto>
+    <texto x="440.0" y="105.0" estilo="valor"  ancora="topo">a</texto>
+    <texto x="462.5" y="105.0" estilo="valor"  ancora="topo">{periodo_fim}</texto>
+
+    <!-- Seis blocos de foto: 2 colunas x 3 linhas -->
+    <instancia modelo="bloco_foto" x="91.0"  y="123.0" foto="1"/>
+    <instancia modelo="bloco_foto" x="315.7" y="123.0" foto="2"/>
+    <instancia modelo="bloco_foto" x="91.0"  y="330.5" foto="3"/>
+    <instancia modelo="bloco_foto" x="315.7" y="330.5" foto="4"/>
+    <instancia modelo="bloco_foto" x="91.0"  y="538.0" foto="5"/>
+    <instancia modelo="bloco_foto" x="315.7" y="538.0" foto="6"/>
+
+    <!-- Assinaturas -->
+    <linha x1="91.0"  y1="770.7" x2="198.7" y2="770.7" estilo="fina"/>
+    <linha x1="234.5" y1="770.7" x2="387.6" y2="770.7" estilo="fina"/>
+    <linha x1="423.3" y1="770.7" x2="531.1" y2="770.7" estilo="fina"/>
+    <celula x="91.0"  y="772.1" largura="107.7" altura="20" estilo="assina" alinhamento_vertical="topo">{empresa}</celula>
+    <celula x="234.5" y="772.1" largura="153.1" altura="20" estilo="assina" alinhamento_vertical="topo">{supervisora}</celula>
+    <celula x="423.3" y="772.1" largura="107.8" altura="20" estilo="assina" alinhamento_vertical="topo">{fiscal}</celula>
+  </layout>
+</relatorio>
